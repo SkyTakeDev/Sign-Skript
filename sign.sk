@@ -1,0 +1,22 @@
+options:
+	prefix: &c&lITEMSUCHT
+
+command /sign [<text>]:
+	permission: sign.player.use
+	permission message: {@prefix} &8» &7Dazu hast du keine Berechtigung!
+	aliases: signieren
+	trigger:
+		if arg 1 is set:
+			if player's tool is air:
+				send "{@prefix} &8» &bDu musst ein Item in der Hand halten!" to player
+			else:
+				set line 1 of the lore of player's tool to " "
+				set line 2 of the lore of player's tool to "%colored arg 1%"
+				set line 3 of the lore of player's tool to "&7--------------------------------------"
+				set line 4 of the lore of player's tool to "&7Signiert von &c%player% &7am &c%now%"
+		else:
+			if player's tool is air:
+				send "{@prefix} &8» &bDu musst ein Item in der Hand halten!" to player
+			else:
+				set line 2 of the lore of player's tool to "&7--------------------------------------"
+				set line 3 of the lore of player's tool to "&7Signiert von &c%player% &7am &c%now%"
